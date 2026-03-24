@@ -1,6 +1,15 @@
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 function IndexPage() {
+
+  const session = getServerSession();
+
+  if(!session) redirect("/login");
+
+  redirect("/app");
+
   return (
     <>
       <h1>Welcome to Snippr!</h1>

@@ -5,11 +5,11 @@ const RootLayout: React.FC = ({ children }: { children?: React.ReactNode }) => {
   return (
     <>
       <html>
-        <header>
+        <head>
           <title>Snippr</title>
-        </header>
-        <body>
-          <div className="bg-sky-50 w-full flex justify-center items-center h-screen">
+        </head>
+        <body className="bg-slate-950">
+          <div className="w-full min-h-screen">
             {children}
           </div>
         </body>
