@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "../../components/Button";
+import LabelAndInput from "@/app/components/LabelAndInput";
+import Link from "next/link";
 
 function RegisterPage() {
   return (
@@ -7,86 +9,41 @@ function RegisterPage() {
       {/* Header */}
       <div className="space-y-1">
         <h2 className="text-2xl font-bold text-white">Create an account</h2>
-        <p className="text-slate-400 text-sm">Start organizing your snippets for free</p>
+        <p className="text-slate-400 text-sm">
+          Start organizing your snippets for free
+        </p>
       </div>
 
       {/* Form */}
       <form className="space-y-4">
         {/* Name row */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="space-y-1.5">
-            <label htmlFor="firstName" className="block text-sm font-medium text-slate-300">
-              First name
-            </label>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              autoComplete="given-name"
-              required
-              placeholder="Ada"
-              className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
-            />
-          </div>
-          <div className="space-y-1.5">
-            <label htmlFor="lastName" className="block text-sm font-medium text-slate-300">
-              Last name
-            </label>
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              autoComplete="family-name"
-              required
-              placeholder="Lovelace"
-              className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="block text-sm font-medium text-slate-300">
-            Email
-          </label>
-          <input
+        <div className="flex flex-col gap-3">
+          <LabelAndInput
+            id="username"
+            label="Username"
+            type="text"
+            placeholder="yourusername"
+          />
+          <LabelAndInput
             id="email"
-            name="email"
+            label="Email"
             type="email"
-            autoComplete="email"
-            required
             placeholder="you@example.com"
-            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
           />
-        </div>
 
-        <div className="space-y-1.5">
-          <label htmlFor="password" className="block text-sm font-medium text-slate-300">
-            Password
-          </label>
-          <input
+          <LabelAndInput
             id="password"
-            name="password"
+            label="Password"
             type="password"
-            autoComplete="new-password"
-            required
             placeholder="At least 8 characters"
-            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
           />
-        </div>
-
-        <div className="space-y-1.5">
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-300">
-            Confirm password
-          </label>
-          <input
+          <LabelAndInput
             id="confirmPassword"
-            name="confirmPassword"
+            label="Confirm password"
             type="password"
-            autoComplete="new-password"
-            required
             placeholder="••••••••"
-            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
           />
+
         </div>
 
         {/* Terms */}
@@ -98,12 +55,15 @@ function RegisterPage() {
           />
           <span className="text-slate-400 text-xs leading-relaxed">
             I agree to the{" "}
-            <a href="#" className="text-sky-400 hover:text-sky-300 transition">Terms of Service</a>
-            {" "}and{" "}
-            <a href="#" className="text-sky-400 hover:text-sky-300 transition">Privacy Policy</a>
+            <a href="#" className="text-sky-400 hover:text-sky-300 transition">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-sky-400 hover:text-sky-300 transition">
+              Privacy Policy
+            </a>
           </span>
         </label>
-
         <Button buttonType="submit">Create account</Button>
       </form>
 
@@ -128,9 +88,12 @@ function RegisterPage() {
       {/* Sign in link */}
       <p className="text-center text-sm text-slate-500">
         Already have an account?{" "}
-        <a href="/login" className="text-sky-400 hover:text-sky-300 font-medium transition">
+        <Link
+          href="/login"
+          className="text-sky-400 hover:text-sky-300 font-medium transition"
+        >
           Sign in
-        </a>
+        </Link>
       </p>
     </div>
   );

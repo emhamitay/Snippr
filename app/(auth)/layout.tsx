@@ -1,5 +1,6 @@
 import React from "react";
-import Image from "next/image";
+import Logo from "@/app/components/Logo";
+import HeroHandler from "@/app/(auth)/hero/HeroHandler";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,35 +21,11 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
 
         {/* Logo */}
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-sky-500 flex items-center justify-center">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <span className="text-white text-xl font-bold tracking-tight">Snippr</span>
-        </div>
+        <Logo />
 
         {/* Center copy */}
-        <div className="relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-1.5 text-sky-300 text-sm">
-            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-            Your code. Organized.
-          </div>
-          <h1 className="text-4xl font-bold text-white leading-snug">
-            Save, share &amp;<br />discover code snippets.
-          </h1>
-          <p className="text-slate-400 text-base leading-relaxed max-w-sm">
-            Snippr helps you capture the code that matters, tag it, and find it again in seconds.
-          </p>
+        <HeroHandler/>
         </div>
-
-        {/* Bottom testimonial */}
-        <div className="relative z-10 bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
-  <p className="text-slate-400 text-sm mt-1">Snippets. Organized. Instantly.</p>
-  </div>
-      </div>
 
       {/* Right form panel */}
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12">

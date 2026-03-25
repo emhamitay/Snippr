@@ -1,6 +1,6 @@
 import React from "react";
 
-type ButtonType = "submit";
+type ButtonType = "submit" | "button" | "reset";
 
 function Button({
   buttonType,

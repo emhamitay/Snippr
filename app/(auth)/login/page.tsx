@@ -1,5 +1,7 @@
 import React from "react";
-import Button from "../../components/Button"
+import Button from "../../components/Button";
+import LabelAndInput from "@/app/components/LabelAndInput";
+import Link from "next/link";
 
 function LoginPage() {
   return (
@@ -12,44 +14,22 @@ function LoginPage() {
 
       {/* Form */}
       <form className="space-y-4">
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="block text-sm font-medium text-slate-300">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            placeholder="you@example.com"
-            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
-          />
-        </div>
+        <LabelAndInput
+          id="email"
+          label="Email"
+          type="email"
+          placeholder="you@example.com"
+        />
+        <LabelAndInput
+          comment="Forgot password?"
+          commentLink="#"
+          id="password"
+          label="Password"
+          type="password"
+          placeholder="••••••••"
+        />
 
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium text-slate-300">
-              Password
-            </label>
-            <a href="#" className="text-xs text-sky-400 hover:text-sky-300 transition">
-              Forgot password?
-            </a>
-          </div>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            placeholder="••••••••"
-            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
-          />
-        </div>
-
-        <Button buttonType="submit">
-          Sign in
-        </Button>
+        <Button buttonType="submit">Sign in</Button>
       </form>
 
       {/* Divider */}
@@ -73,9 +53,12 @@ function LoginPage() {
       {/* Sign up */}
       <p className="text-center text-sm text-slate-500">
         Don&apos;t have an account?{" "}
-        <a href="/register" className="text-sky-400 hover:text-sky-300 font-medium transition">
+        <Link
+          href="/register"
+          className="text-sky-400 hover:text-sky-300 font-medium transition"
+        >
           Sign up
-        </a>
+        </Link>
       </p>
     </div>
   );
