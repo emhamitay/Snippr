@@ -13,15 +13,8 @@ export async function proxy(request: NextRequest) {
     if (!token) return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Add pathname to headers for later use in the login/register layout
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-pathname", pathname);
-  // Continue with the request and include the modified headers
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  //otherwise
+  return NextResponse.next();
 }
 
 export const config = {

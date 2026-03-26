@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { StopTypingInput, ActionCallback } from "./StopTypingInput";
 
 function LabelAndInput({
   id,
@@ -8,6 +11,8 @@ function LabelAndInput({
   placeholder,
   comment,
   commentLink,
+  useTimeout,
+  callback,
 }: {
   id: string;
   label: string;
@@ -15,6 +20,8 @@ function LabelAndInput({
   placeholder: string;
   comment?: string;
   commentLink?: string;
+  useTimeout?: boolean;
+  callback?: ActionCallback;
 }) {
   return (
     <>
@@ -32,15 +39,22 @@ function LabelAndInput({
             </Link>
           )}
         </div>
-        <input
-          id={id}
-          name={id}
-          type={type}
-          autoComplete={id}
-          required
-          placeholder={placeholder}
-          className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
-        />
+        {useTimeout && callback ? (
+          <StopTypingInput
+            inputProp={{ id, name: id, type: type as "input" | "email" | "password", placeholder }}
+            callback={callback}
+          />
+        ) : (
+          <input
+            id={id}
+            name={id}
+            type={type}
+            autoComplete={id}
+            required
+            placeholder={placeholder}
+            className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-2.5 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
+          />
+        )}
       </div>
     </>
   );

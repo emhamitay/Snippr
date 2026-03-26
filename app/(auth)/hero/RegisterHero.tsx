@@ -35,9 +35,7 @@ const RegisterHero: React.FC = () => {
         </div>
 
         {/* Bottom tagline */}
-        <div className="relative z-10 bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
-          <p className="text-slate-400 text-sm mt-1">Snippets. Organized. Instantly.</p>
-        </div>
+
     </>
   );
 };
