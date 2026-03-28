@@ -1,40 +1,12 @@
 'use client'
 
-import React, { useState, useTransition } from "react";
 import Button from "../../components/Button";
-import LabelAndInput from "@/app/components/LabelAndInput";
 import Link from "next/link";
-import { isEmailAvailable, isUsernameAvailable } from "./actions";
+import Username from "./components/Username";
+import Email from "./components/Email";
+import Password from "./components/Password";
 
 function RegisterPage() {
-  const [usernameStatus, setUsernameStatus] = useState<Awaited<ReturnType<typeof isUsernameAvailable>> | null>(null);
-  const [emailStatus, setEmailStatus] = useState<Awaited<ReturnType<typeof isEmailAvailable>> | null>(null);
-
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [isUsernamePending, startUsernameTransition] = useTransition();
-  const [isEmailPending, startEmailTransition] = useTransition();
-
-  const onUsernameChange = (value: string) => {
-    startUsernameTransition(async () => {
-      const status = await isUsernameAvailable(value);
-      setUsernameStatus(status);
-    });
-  }
-
-  const onEmailChange = (value: string) => {
-    startEmailTransition(async () => {
-      const status = await isEmailAvailable(value);
-      setEmailStatus(status);
-    })
-  }
-
-  const onPasswordChange = (value: string) => setPassword(value);
-  const onConfirmPasswordChange = (value: string) => setConfirmPassword(value);
-
-  const passwordsMatch = confirmPassword !== "" && password === confirmPassword;
-  const passwordsMismatch = confirmPassword !== "" && password !== confirmPassword;
 
   return (
     <div className="w-full max-w-sm space-y-8">
@@ -50,114 +22,12 @@ function RegisterPage() {
       <form className="space-y-4">
         {/* Name row */}
         <div className="flex flex-col gap-3">
-          <LabelAndInput
-            id="username"
-            label="Username"
-            type="text"
-            placeholder="yourusername"
-            callback={onUsernameChange}
-            useTimeout={true}
-          />
-          
-          {isUsernamePending && (
-            <p className="flex items-center gap-1.5 text-xs text-slate-400">
-              <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/></svg>
-              Checking...
-            </p>
-          )}
-          {!isUsernamePending && usernameStatus?.status === "available" && (
-            <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Username is available
-            </p>
-          )}
-          {!isUsernamePending && usernameStatus?.status === "taken" && (
-            <p className="flex items-center gap-1.5 text-xs text-red-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-              Username is taken
-            </p>
-          )}
-          {!isUsernamePending && usernameStatus?.status === "missing characters" && (
-            <p className="flex items-center gap-1.5 text-xs text-amber-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              Username is too short
-            </p>
-          )}
 
-          <LabelAndInput
-            id="email"
-            label="Email"
-            type="email"
-            placeholder="you@example.com"
-            callback={onEmailChange}
-            useTimeout={true}
-          />
+          <Username />
 
-          {isEmailPending && (
-            <p className="flex items-center gap-1.5 text-xs text-slate-400">
-              <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/></svg>
-              Checking...
-            </p>
-          )}
-          {!isEmailPending && emailStatus?.status === "available" && (
-            <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Email is available
-            </p>
-          )}
-          {!isEmailPending && emailStatus?.status === "taken" && (
-            <p className="flex items-center gap-1.5 text-xs text-red-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-              Email is already registered
-            </p>
-          )}
-          {!isEmailPending && emailStatus?.status === "invalid email" && (
-            <p className="flex items-center gap-1.5 text-xs text-amber-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              Please enter a valid email
-            </p>
-          )}
+          <Email />
 
-          <LabelAndInput
-            id="password"
-            label="Password"
-            type="password"
-            placeholder="At least 8 characters"
-            useTimeout={true}
-            callback={onPasswordChange}
-          />
-          {password !== "" && password.length < 8 && (
-            <p className="flex items-center gap-1.5 text-xs text-amber-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              Password must be at least 8 characters
-            </p>
-          )}
-          {password.length >= 8 && (
-            <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Password length is good
-            </p>
-          )}
-          <LabelAndInput
-            id="confirmPassword"
-            label="Confirm password"
-            type="password"
-            placeholder="••••••••"
-            useTimeout={true}
-            callback={onConfirmPasswordChange}
-          />
-          {passwordsMatch && (
-            <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Passwords match
-            </p>
-          )}
-          {passwordsMismatch && (
-            <p className="flex items-center gap-1.5 text-xs text-red-400">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-              Passwords do not match
-            </p>
-          )}
+          <Password />
 
         </div>
 

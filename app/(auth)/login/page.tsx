@@ -1,6 +1,7 @@
-import React from "react";
+'use client'
+
 import Button from "../../components/Button";
-import LabelAndInput from "@/app/components/LabelAndInput";
+import Input from "@/app/components/Input";
 import Link from "next/link";
 
 function LoginPage() {
@@ -14,16 +15,18 @@ function LoginPage() {
 
       {/* Form */}
       <form className="space-y-4">
-        <LabelAndInput
+        <Input
           id="email"
+          name="email"
           label="Email"
           type="email"
           placeholder="you@example.com"
         />
-        <LabelAndInput
+        <Input
           comment="Forgot password?"
           commentLink="#"
           id="password"
+          name="password"
           label="Password"
           type="password"
           placeholder="••••••••"
