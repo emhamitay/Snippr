@@ -1,7 +1,6 @@
 'use client'
 
-import Button from "../../components/Button";
-import Input from "@/app/components/Input";
+import Form from "./features/form";
 import Link from "next/link";
 
 function LoginPage() {
@@ -14,26 +13,7 @@ function LoginPage() {
       </div>
 
       {/* Form */}
-      <form className="space-y-4">
-        <Input
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          placeholder="you@example.com"
-        />
-        <Input
-          comment="Forgot password?"
-          commentLink="#"
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          placeholder="••••••••"
-        />
-
-        <Button buttonType="submit">Sign in</Button>
-      </form>
+      <Form />
 
       {/* Divider */}
       <div className="flex items-center gap-3">

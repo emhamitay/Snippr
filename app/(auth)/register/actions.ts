@@ -12,3 +12,14 @@ export async function isEmailAvailable(email: string): Promise<ActionResult> {
     // run db check here
     return { status: "success" } ;
 }
+
+export async function CreateAccount(formData: FormData){
+    console.log(formData);
+    
+    //validate data
+
+    //create user
+
+    //rediract
+    console.log('user created rediract');
+}

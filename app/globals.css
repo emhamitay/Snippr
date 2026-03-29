@@ -3,3 +3,12 @@
 :root {
   --color-bg: #0d0d0d;
 }
+
+/* fixing chrome autofill for rememebered values */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #0f172a inset; /* slate-900 */
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+}
