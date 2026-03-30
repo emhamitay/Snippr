@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Form from "./features/Form";
+import TermsAndPolicy from "./features/TermsAndPolicy";
 
 function RegisterPage() {
 
@@ -46,6 +47,7 @@ function RegisterPage() {
           Sign in
         </Link>
       </p>
+      
     </div>
   );
 }

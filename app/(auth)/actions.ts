@@ -42,6 +42,10 @@ export async function isEmailAvailable(email: string): Promise<ActionResult> {
     }
 }
 
+type FormResult = {
+    status: "success" | "error";
+}
+
 export async function CreateAccount(formData: FormData) {
     //create object from form data
     const user : NewUser = {
@@ -50,12 +54,11 @@ export async function CreateAccount(formData: FormData) {
         password: formData.get('password') as string
     }
     
+    //create user in database
     try {
-        const createdUser = await createUser(user);
-        revalidatePath("/app/");
-        //
-    } catch (error) {
-        console.error('Error creating user:', error);
-        //
+        await createUser(user);
+        return { status: "success" } as FormResult;
+    } catch (e) {
+        return { status: "error" } as FormResult;
     }
 }
