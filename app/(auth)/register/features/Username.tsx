@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Input, { InputStatus } from "@/app/components/Input";
-import { isUsernameAvailable } from "../actions";
+import { isUsernameAvailable } from "../../actions";
 
 const MESSAGES : Record<InputStatus, string> = {
     success: "Username is available",

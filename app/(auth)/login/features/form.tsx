@@ -3,7 +3,7 @@
 import React from 'react';
 import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
-import { Login } from "../actions"
+import { Login } from "../../actions"
 
 const Form: React.FC = () => {
   return (

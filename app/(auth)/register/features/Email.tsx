@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Input, { InputStatus } from "@/app/components/Input";
-import { isEmailAvailable } from "../actions";
+import { isEmailAvailable } from "../../actions";
 
 const MESSAGES : Record<InputStatus, string> = {
     success: "Email is available",
